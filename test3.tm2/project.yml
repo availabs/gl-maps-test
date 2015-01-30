@@ -1,0 +1,25 @@
+_prefs: 
+  mapid: am3081.de6f7ff1
+  saveCenter: true
+_properties: {}
+attribution: ''
+bounds: 
+  - -180
+  - -85.0511
+  - 180
+  - 85.0511
+center: 
+  - -2.5928
+  - -5.9767
+  - 6
+description: ''
+format: "png8:m=h"
+interactivity_layer: ''
+layers: null
+maxzoom: 14
+minzoom: 0
+name: ''
+source: "mapbox:///am3081.d1021558"
+styles: 
+  - style.mss
+template: ''

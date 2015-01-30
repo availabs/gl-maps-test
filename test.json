@@ -32,7 +32,7 @@
       "type": "line",
       "paint": {
         "line-width": 6,
-        "line-color": "@red"
+        "line-color": "#000"
       },
       "paint.night": {
         "line-width": 6,
