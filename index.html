@@ -32,27 +32,51 @@
 </div>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiYW0zMDgxIiwiYSI6IkxzS0FpU0UifQ.rYv6mHCcNd7KKMs7yhY3rw';
-mapboxgl.util.getJSON('test.json', function (err, style) {
+mapboxgl.util.getJSON('test2.json', function (err, style) {
   if (err) { console.log(err) };
 
   style.layers.forEach(function(layer) {
-    console.log('layer:',layer)
     layer.interactive = true;
   });
+
 
   var map = new mapboxgl.Map({
     container: 'map',
     style: style,
     center: [40.7, -73.9],
-    zoom: 10
+    zoom: 4
   });
 
+  console.log(map.style);
   map.addControl(new mapboxgl.Navigation());
 
+  
+  var currentFeature = {properties:{geoid:'23'}};
   map.on('hover', function(e) {
       map.featuresAt(e.point, {radius: 5}, function(err, features) {
           if (err) throw err;
-          document.getElementById('features').innerHTML = JSON.stringify(features, null, 2);
+          if(features[0]){
+            if(currentFeature.properties.geoid !==  features[0].properties.geoid){
+              //console.log(features[0].properties.geoid);
+              document.getElementById('features').innerHTML = JSON.stringify(features[0], null, 2);
+              style.layers[2].filter = ["==", "geoid", features[0].properties.geoid];
+              map.setStyle(style);
+              // map.style.layerMap.highlight.filter = ["==", "geoid", features[0].properties.geoid];
+              // map.style.layerMap.highlight.paint['line-color'] = '#00f';
+              // map.style.recalculate(map.getZoom());
+              // map.style.cascade();
+              //map.style.stylesheet.layers[2].filter = ["==", "geoid", features[0].properties.geoid];
+              //map.setStyle(style)
+              // if (map.style.classes.night) {
+              //   map.style.removeClass('night');
+              // } else {
+              //   map.style.addClass('night');
+              // }
+              //console.log(map.style);
+              console.log(features[0].properties.geoid);
+              currentFeature = features[0]
+            }
+          }
       });
   });
 

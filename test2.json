@@ -6,9 +6,9 @@
     "@red":"#f00"
   },
   "sources": {
-    "hpms":{
+    "counties":{
       "type":"vector",
-      "url":"mapbox://am3081.d1021558",
+      "url":"mapbox://am3081.ae7c17cc",
       "maxzoom":15
     }
   },
@@ -26,17 +26,32 @@
       }
     },
     {
-      "id": "HPMS_NPMRDS",
-      "source": "hpms",
+      "id": "counties",
+      "source": "counties",
       "source-layer": "data",
       "type": "line",
       "paint": {
-        "line-width": 4,
+        "line-width": 2,
         "line-color": "#000"
       },
       "paint.night": {
-        "line-width": 6,
+        "line-width": 2,
         "line-color": "@red"
+      }
+    },
+    {
+      "id": "highlight",
+      "source": "counties",
+      "source-layer": "data",
+      "type": "line",
+      "filter": ["==", "geoid", "36001"],
+      "paint": {
+        "line-width": 2,
+        "line-color": "#f00"
+      },
+      "paint.night": {
+        "line-width": 2,
+        "line-color": "#0f0"
       }
     }
   ]
